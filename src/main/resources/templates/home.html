@@ -5,6 +5,12 @@
     <title>Home</title>
 </head>
 <body>
-    Welcomeeee <span th:text="${user}">
+    <form action="#" th:action="@{/user}" th:object="${user}" method="post">
+        <input type="text" placeholder="First name" th:name="firstName"/>
+        <input type="text" placeholder="Last name" th:name="lastName"/>
+        <br/>
+        <br/>
+        <input type="submit" value="Submit" />
+    </form>
 </body>
 </html>

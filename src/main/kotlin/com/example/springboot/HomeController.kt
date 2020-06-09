@@ -2,23 +2,22 @@ package com.example.springboot
 
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.ModelAttribute
+import org.springframework.web.bind.annotation.PostMapping
 
 @Controller
 class HomeController {
 
-    @RequestMapping("/")
-    fun home(@RequestParam num : Int , model : Model) : String{
-
-        var user = ""
-        when(num){
-            1 -> user = "user 1"
-            2 -> user = "user 2"
-            3 -> user = "user 3"
-            4 -> user = "user 4"
-        }
-        model.addAttribute("user" , user)
+    @GetMapping("/")
+    fun homeForm(model : Model) : String{
+        model.addAttribute("user" , User())
         return "home"
+    }
+
+    @PostMapping("/user")
+    fun homeSubmit(@ModelAttribute user : User) : String{
+        if (user.firstName.isNullOrEmpty() or user.lastName.isNullOrEmpty()) return "error"
+        return "user"
     }
 }
