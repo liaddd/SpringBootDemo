@@ -1,23 +1,11 @@
-package com.example.SpringBoot
+package com.example.springboot
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.SpringApplication
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.boot.runApplication
 
 @SpringBootApplication
-@RestController
-class DemoApplication {
+class Application
 
-	companion object {
-		@JvmStatic
-		fun main(args: Array<String>) {
-			SpringApplication.run(DemoApplication::class.java, *args)
-		}
-	}
-
-	@GetMapping("/")
-	fun hello(@RequestParam(value = "name", defaultValue = "its working") value: String): String = String.format("Awesome!, $value")
-
+fun main(args: Array<String>) {
+	runApplication<Application>(*args)
 }
